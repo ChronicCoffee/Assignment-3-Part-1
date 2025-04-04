@@ -1,0 +1,182 @@
+===== BEFORE PROCESSING =====
+
+#1. Initial NEW_TRANSACTIONS:
+
+TRANSACTION_NO TRANSACT DESCRIPTION                                                                                          ACCOUNT_NO T TRANSACTION_AMOUNT
+-------------- -------- ---------------------------------------------------------------------------------------------------- ---------- - ------------------
+             1 03/04/25 Payment for services rendered                                                                              1250 D              30000
+             1 03/04/25 Payment for services rendered                                                                              3058 C              30000
+             3 03/04/25 Investment purchased                                                                                       1250 C              30000
+             3 03/04/25 Investment purchased                                                                                       1850 D              30000
+             5 03/04/25 Royalty revenue                                                                                            1250 D              10000
+             5 03/04/25 Royalty revenue                                                                                            3073 C              10000
+             7 03/04/25 New property purchased                                                                                     1250 C               9400
+             7 03/04/25 New property purchased                                                                                     1930 D             129400
+             7 03/04/25 New property purchased                                                                                     2580 C             120000
+             9 03/04/25 Invoiced for services rendered                                                                             1150 D               1400
+             9 03/04/25 Invoiced for services rendered                                                                             3058 C               1400
+            11 03/04/25 Payroll processed                                                                                          2050 C              50000
+            11 03/04/25 Payroll processed                                                                                          4045 D              50000
+            13 03/04/25 Monthend roll to owners equity                                                                             3058 D              31400
+            13 03/04/25 Monthend roll to owners equity                                                                             3073 D              10000
+            13 03/04/25 Monthend roll to owners equity                                                                             4045 C              50000
+            13 03/04/25 Monthend roll to owners equity                                                                             5555 D               8600
+            15 03/04/25 Payment for services rendered                                                                              1250 D              40000
+            15 03/04/25 Payment for services rendered                                                                              3058 C              40000
+            17 03/04/25 Mortgage payment                                                                                           1250 C              15000
+            17 03/04/25 Mortgage payment                                                                                           4006 D              15000
+            19 03/04/25 Monthend roll to owners equity                                                                             3058 D              40000
+            19 03/04/25 Monthend roll to owners equity                                                                             4006 C              15000
+            19 03/04/25 Monthend roll to owners equity                                                                             5555 C              25000
+            21 03/04/25 Payroll processed                                                                                          2050 C               5000
+            21 03/04/25 Payroll processed                                                                                          4045 D               5000
+            23 03/04/25 Payroll paid                                                                                               1250 C              10000
+            23 03/04/25 Payroll paid                                                                                               2050 D              10000
+
+28 rows selected. 
+
+#2. Initial ACCOUNT Balances:
+
+ACCOUNT_NO ACCOUNT_NAME                   ACCOUNT_BALANCE
+---------- ------------------------------ ---------------
+      1150 Accounts Receivable                          0
+      1250 Cash                                         0
+      1850 Investment                                   0
+      1930 Building                                     0
+      2050 Accounts Payable                             0
+      2580 Mortgage                                     0
+      3058 Service Revenue                              0
+      3073 Royalty Revenue                              0
+      4006 Mortgage Expense                             0
+      4045 Payroll Expense                              0
+      4078 Utilities Expense                            0
+      5555 Owners Equity                                0
+
+12 rows selected. 
+
+#3. Initial TRANSACTION_HISTORY count:
+
+  COUNT(*)
+----------
+         0
+
+#4. Initial TRANSACTION_DETAIL count:
+
+  COUNT(*)
+----------
+         0
+
+Processed Transaction #1 (Debits: 30000, Credits: 30000)
+Processed Transaction #3 (Debits: 30000, Credits: 30000)
+Processed Transaction #5 (Debits: 10000, Credits: 10000)
+Processed Transaction #7 (Debits: 129400, Credits: 129400)
+Processed Transaction #9 (Debits: 1400, Credits: 1400)
+Processed Transaction #11 (Debits: 50000, Credits: 50000)
+Processed Transaction #13 (Debits: 50000, Credits: 50000)
+Processed Transaction #15 (Debits: 40000, Credits: 40000)
+Processed Transaction #17 (Debits: 15000, Credits: 15000)
+Processed Transaction #19 (Debits: 40000, Credits: 40000)
+Processed Transaction #21 (Debits: 5000, Credits: 5000)
+Processed Transaction #23 (Debits: 10000, Credits: 10000)
+All transactions processed successfully.
+
+
+PL/SQL procedure successfully completed.
+
+
+===== AFTER PROCESSING =====
+
+#1. Remaining NEW_TRANSACTIONS (should be empty):
+no rows selected
+#2. Updated ACCOUNT Balances:
+
+ACCOUNT_NO ACCOUNT_NAME                   ACCOUNT_BALANCE
+---------- ------------------------------ ---------------
+      1150 Accounts Receivable                       1400
+      1250 Cash                                     15600
+      1850 Investment                               30000
+      1930 Building                                129400
+      2050 Accounts Payable                         45000
+      2580 Mortgage                                120000
+      3058 Service Revenue                              0
+      3073 Royalty Revenue                              0
+      4006 Mortgage Expense                             0
+      4045 Payroll Expense                           5000
+      4078 Utilities Expense                            0
+      5555 Owners Equity                            16400
+
+12 rows selected. 
+
+#3. New TRANSACTION_HISTORY entries:
+
+TRANSACTION_NO TRANSACT DESCRIPTION                                                                                         
+-------------- -------- ----------------------------------------------------------------------------------------------------
+             1 03/04/25 Payment for services rendered                                                                       
+             3 03/04/25 Investment purchased                                                                                
+             5 03/04/25 Royalty revenue                                                                                     
+             7 03/04/25 New property purchased                                                                              
+             9 03/04/25 Invoiced for services rendered                                                                      
+            11 03/04/25 Payroll processed                                                                                   
+            13 03/04/25 Monthend roll to owners equity                                                                      
+            15 03/04/25 Payment for services rendered                                                                       
+            17 03/04/25 Mortgage payment                                                                                    
+            19 03/04/25 Monthend roll to owners equity                                                                      
+            21 03/04/25 Payroll processed                                                                                   
+            23 03/04/25 Payroll paid                                                                                        
+
+12 rows selected. 
+
+#4. New TRANSACTION_DETAIL entries:
+
+ACCOUNT_NO TRANSACTION_NO T TRANSACTION_AMOUNT
+---------- -------------- - ------------------
+      1250              1 D              30000
+      3058              1 C              30000
+      1250              3 C              30000
+      1850              3 D              30000
+      1250              5 D              10000
+      3073              5 C              10000
+      1250              7 C               9400
+      1930              7 D             129400
+      2580              7 C             120000
+      1150              9 D               1400
+      3058              9 C               1400
+      2050             11 C              50000
+      4045             11 D              50000
+      3058             13 D              31400
+      3073             13 D              10000
+      4045             13 C              50000
+      5555             13 D               8600
+      1250             15 D              40000
+      3058             15 C              40000
+      1250             17 C              15000
+      4006             17 D              15000
+      3058             19 D              40000
+      4006             19 C              15000
+      5555             19 C              25000
+      2050             21 C               5000
+      4045             21 D               5000
+      1250             23 C              10000
+      2050             23 D              10000
+
+28 rows selected. 
+
+#5. Verification - Debits should equal Credits for each transaction:
+
+TRANSACTION_NO     DEBITS    CREDITS
+-------------- ---------- ----------
+             1      30000      30000
+             3      30000      30000
+             5      10000      10000
+             7     129400     129400
+             9       1400       1400
+            11      50000      50000
+            13      50000      50000
+            15      40000      40000
+            17      15000      15000
+            19      40000      40000
+            21       5000       5000
+            23      10000      10000
+
+12 rows selected. 
+
