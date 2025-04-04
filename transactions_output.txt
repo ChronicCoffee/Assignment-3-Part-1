@@ -1,5 +1,0 @@
-All transactions processed successfully.
-
-
-PL/SQL procedure successfully completed.
-
